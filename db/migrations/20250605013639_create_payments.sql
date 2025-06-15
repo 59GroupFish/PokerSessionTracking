@@ -1,7 +1,7 @@
 -- +goose Up
 -- +goose StatementBegin
 CREATE TABLE IF NOT EXISTS payments (
-    id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     payer VARCHAR(255) NOT NULL,
     payee VARCHAR(255) NOT NULL,
     paid_date TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),

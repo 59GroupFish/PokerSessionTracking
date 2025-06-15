@@ -8,11 +8,12 @@ templ ViewGames(games []internal.Game) {
         <div class="create-game">
             <h2 class="section-title">Create New Game</h2>
 
-            <form id="game-form" hx-put="/api/create-game" hx-trigger="submit" hx-ext="json-enc" hx-on="htmx:configRequest">
-                <label for="game-name">Game Name</label>
-                <input type="text" id="game-name" name="game-name" placeholder="e.g., The Big Game" required>
+            <form id="game-form" hx-put="/api/game" hx-trigger="submit" hx-ext="json-enc" hx-on="htmx:configRequest">
 
-                <button class="create-game-button" type="submit" >
+                <label for="game-name">Game Name</label>
+                <input type="text" id="game-name" name="game-name" placeholder="e.g., The Big Game" maxlength="255" required>
+
+                <button class="create-button" type="submit" >
                     Create Game
                 </button>
             </form>
@@ -26,10 +27,10 @@ templ ViewGames(games []internal.Game) {
                     <div>
                         <h3>{ game.Name }</h3>
                     </div>
-                    <button class="select-button">
+                    <button class="select-button" hx-get={templ.URL("/view-sessions/" + game.Id.String())} hx-target="body" hx-push-url="true">
                         Sessions
                     </button>
-                    <button class="select-button">
+                    <button class="select-button" hx-get={templ.URL("/manage-players/" + game.Id.String())} hx-target="body" hx-push-url="true">
                         Players
                     </button>
                     <button class="delete-button">
@@ -41,7 +42,7 @@ templ ViewGames(games []internal.Game) {
         </div>
     </div>
     <script>
-        document.addEventListener('htmx:configRequest', function(evt) {
+        document.getElementById('game-form').addEventListener('htmx:configRequest', function(evt) {
             if (!evt.detail.headers) {
                 evt.detail.headers = {};
             }
@@ -52,10 +53,9 @@ templ ViewGames(games []internal.Game) {
             evt.detail.parameters = body;
         });
         document.getElementById('game-form').addEventListener('htmx:afterRequest', function(evt) {
-        // You might want to check for success before refreshing
-        // if (evt.detail.xhr.status >= 200 && evt.detail.xhr.status < 300) {
+        if (evt.detail.xhr.status >= 200 && evt.detail.xhr.status < 300) {
             window.location.reload();
-        // }
+        }
     });
     </script>
 }

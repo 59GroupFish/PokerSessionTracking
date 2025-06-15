@@ -1,0 +1,61 @@
+package components
+
+import "github.com/59GroupFish/PokerSessionTracking/internal"
+
+templ ManagePlayers(players []internal.Player, gameId string) {
+    <h2>Games</h2>
+    <div class="view-games">
+        <div class="create-game">
+            <h2 class="section-title">Add New Player</h2>
+
+            <form id="player-form" hx-put="/api/player" hx-trigger="submit" hx-ext="json-enc" hx-on="htmx:configRequest">
+                <input type="hidden" id="game-id" name="game-id" value={ gameId }>
+
+                <label for="player-name">Player Name</label>
+                <input type="text" id="player-name" name="player-name" minlength="1" maxlength="255" required>
+
+                <button class="create-button" type="submit" >
+                    Add
+                </button>
+            </form>
+        </div>
+        <div class="existing-games">
+            <h2 class="section-title">Players</h2>
+            <div class="game-list">
+            for _, player := range players {
+                <!-- Placeholder Game 1 -->
+                <div class="game-item">
+                    <div>
+                        <h3>{ player.Name }</h3>
+                    </div>
+                    <button class="select-button" hx-get={templ.URL("/manage-players/" + player.Id.String())} hx-target="body" hx-push-url="true">
+                        Manage
+                    </button>
+                    <button class="delete-button">
+                        Delete
+                    </button>
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('player-form').addEventListener('htmx:configRequest', function(evt) {
+            if (!evt.detail.headers) {
+                evt.detail.headers = {};
+            }
+            evt.detail.headers['Content-Type'] = 'application/json';
+
+            const body = {
+                "name": document.getElementById('player-name').value,
+                "game_id": document.getElementById('game-id').value
+            }
+            evt.detail.parameters = body;
+        });
+        document.getElementById('player-form').addEventListener('htmx:afterRequest', function(evt) {
+        if (evt.detail.xhr.status >= 200 && evt.detail.xhr.status < 300) {
+            window.location.reload();
+        }
+    });
+    </script>
+}

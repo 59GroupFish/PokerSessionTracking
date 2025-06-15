@@ -8,15 +8,16 @@ import (
 	"github.com/google/uuid"
 )
 
-type Game struct {
+type Player struct {
 	Id           uuid.UUID  `json:"id" db:"id"`
 	Name         string     `json:"name" db:"name" binding:"required"`
 	CreatedDate  time.Time  `json:"created_date" db:"created_date"`
 	InactiveDate *time.Time `json:"inactive_date" db:"inactive_date"`
+	GameId       uuid.UUID  `json:"game_id" db:"game_id" binding:"required"`
 }
 
-func CreateGame(newGame *Game) (Game, error) {
-	var response Game
+func AddPlayer(newPlayer *Player) (Player, error) {
+	var response Player
 
 	insertTx, err := db.DB.Beginx()
 	if err != nil {
@@ -25,12 +26,12 @@ func CreateGame(newGame *Game) (Game, error) {
 	defer insertTx.Rollback()
 
 	sql := `
-		insert into games (name)
-		VALUES ($1)
-		returning id, name, created_date;
+		insert into players (name, game_id)
+		VALUES ($1, $2)
+		returning id, name, created_date, inactive_date, game_id;
 	`
-
-	err = insertTx.Get(&response, sql, newGame.Name)
+	log.Printf("gameId: %s", newPlayer.GameId)
+	err = insertTx.Get(&response, sql, newPlayer.Name, newPlayer.GameId)
 	if err != nil {
 		return response, err
 	}
@@ -43,16 +44,17 @@ func CreateGame(newGame *Game) (Game, error) {
 	return response, nil
 }
 
-func GetGames() ([]Game, error) {
-	var response []Game
+func GetPlayers(gameId string) ([]Player, error) {
+	var response []Player
 
 	sql := `
-		select id, name, created_date, inactive_date from games
+		select id, name, created_date, inactive_date from players
 		where inactive_date is null
+		and game_id = $1
 		order by name
 	`
 
-	err := db.DB.Select(&response, sql)
+	err := db.DB.Select(&response, sql, gameId)
 	if err != nil {
 		return response, err
 	}

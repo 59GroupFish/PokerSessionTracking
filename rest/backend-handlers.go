@@ -27,7 +27,24 @@ func CreateGameHandler(c echo.Context) error {
 func GetGamesHandler(c echo.Context) error {
 	response, err := internal.GetGames()
 	if err != nil {
+		log.Println(err)
 		return echo.NewHTTPError(http.StatusNotAcceptable, "Errror getting games.")
+	}
+
+	return c.JSON(http.StatusOK, &response)
+}
+
+func AddPlayerHandler(c echo.Context) error {
+	reqBody := new(internal.Player)
+	if err := c.Bind(reqBody); err != nil {
+		log.Println(err)
+		return echo.NewHTTPError(http.StatusNotAcceptable, "Invalid body.")
+	}
+
+	response, err := internal.AddPlayer(reqBody)
+	if err != nil {
+		log.Println(err)
+		return echo.NewHTTPError(http.StatusNotAcceptable, "Error creating player.")
 	}
 
 	return c.JSON(http.StatusOK, &response)

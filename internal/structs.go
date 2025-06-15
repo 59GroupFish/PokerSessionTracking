@@ -6,13 +6,6 @@ import (
 	"github.com/google/uuid"
 )
 
-type Player struct {
-	Id           uuid.UUID  `db:"id"`
-	Name         string     `db:"name"`
-	CreatedDate  time.Time  `db:"created_date"`
-	InactiveDate *time.Time `db:"inactive_date"`
-}
-
 type Session struct {
 	Id            uuid.UUID  `db:"id"`
 	BBValue       float64    `db:"bb_value"`

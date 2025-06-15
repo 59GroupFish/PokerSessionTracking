@@ -1,7 +1,7 @@
 -- +goose Up
 -- +goose StatementBegin
 CREATE TABLE IF NOT EXISTS session_player_data (
-    id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     buy_in_cash REAL NOT NULL,
     final_stack_chips REAL NOT NULL,
     session_id UUID NOT NULL,

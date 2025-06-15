@@ -1,7 +1,7 @@
 -- +goose Up
 -- +goose StatementBegin
 CREATE TABLE IF NOT EXISTS sessions (
-    id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     bb_value REAL NOT NULL,
     cash_chip_ratio REAL NOT NULL,
     created_date TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),

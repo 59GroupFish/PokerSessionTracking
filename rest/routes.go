@@ -10,12 +10,13 @@ func FrontEndRoutes(e *echo.Echo) {
 
 	e.GET("/", GetHome)
 	e.GET("/view-games", ViewGames)
-	// e.GET("/manage-game", ManageGame)
+	e.GET("/manage-players/:gameId", ManagePlayers)
 }
 
 func BackendRoutes(e *echo.Echo) {
 	api := e.Group("/api")
-	api.PUT("/create-game", CreateGameHandler)
-	api.GET("/get-games", GetGamesHandler)
+	api.GET("/games", GetGamesHandler)
+	api.PUT("/game", CreateGameHandler)
+	api.PUT("/player", AddPlayerHandler)
 	api.GET("/simpledebt", GetSimpleDebt)
 }

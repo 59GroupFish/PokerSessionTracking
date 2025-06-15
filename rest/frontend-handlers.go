@@ -34,3 +34,17 @@ func ViewGames(c echo.Context) error {
 	}
 	return Render(c, http.StatusOK, components.Index("Games", components.ViewGames(games)))
 }
+
+func ManagePlayers(c echo.Context) error {
+	gameId := c.Param("gameId")
+
+	// TODO: Verify game exists and user has access
+
+	players, err := internal.GetPlayers(gameId)
+	if err != nil {
+		log.Println(err)
+		return echo.NewHTTPError(http.StatusNotAcceptable, "Error getting players.")
+	}
+
+	return Render(c, http.StatusOK, components.Index("Manage Players", components.ManagePlayers(players, gameId)))
+}
