@@ -1,0 +1,55 @@
+package components
+
+
+templ Base(title string) {
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>{title}</title>
+            <script src="https://unpkg.com/htmx.org"></script>
+            <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+            <link rel="stylesheet" href="/static/styles.css">
+        </head>
+        <body>
+            <header class="header-banner">
+                <div class="header-home">
+                    <a href="/">
+                            <h1>Poker Tracker</h1>
+                    </a>
+                </div>
+            </header>
+            <main>
+                <div class="leftmenuouter">
+                    <div class="leftmenuinner">
+                        <div class="leftmenuinnerinner">
+                            <h2>Menu</h2>
+                            <a href="/view-games">Games</a>
+                            <a href="/manage-players">Players</a>
+                            <a href="/select-session">Sessions</a>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="maincontentouter">
+                    <div class="maincontentinner">
+                        { children... }
+                    </div>
+                </div>
+            </main>
+        </body>
+    </html>
+}
+
+templ Index(title string, cmp templ.Component) {
+	@Base(title) {
+		@cmp
+	}
+}
+
+templ HomeBody() {
+    <h2>HomeBody</h2>
+    <p>View <a href="/home">HomeLink</a></p>
+}

@@ -1,0 +1,442 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 400;
+}
+
+.header-banner {
+    position: fixed;
+    height: 30px;
+    padding: 10px 0px;
+    line-height: 5px;
+    font-size: 10px;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    text-indent: 10px;
+    background-color: #061848;
+    color: #ffffff;
+    font-family: Helvetica, serif;
+    z-index: 2;
+}
+
+.header-home {
+    position: relative;
+    height: 100%;
+    width: 300px;
+    margin-left: 10px;
+}
+
+.header-home a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.leftmenuouter {
+    height: 100%;
+    width: 250px;
+    position:fixed;
+    left: 0px;
+    top: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    z-index: 1;
+}
+
+.leftmenuinner {
+    padding-top: 50px;
+    height: calc(100% - 50px);
+    width: 250px;
+    position: relative;
+    background-color: #ffffff;
+}
+
+.leftmenuinnerinner {
+    height: 100%;
+    width: 100%;
+    padding-top: 5px;
+    position: relative;
+    overflow-y: auto;
+    background-color: #dcdcdc;
+}
+
+.leftmenuinnerinner h2 {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 20px 0px 10px 0px;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 20px;
+    line-height: 20px;
+    text-indent: 15px;
+    color: #000000;
+}
+
+.leftmenuinnerinner a {
+    width: 100%;
+    text-indent: 40px;
+    margin: 5px 0px;
+    padding: 5px 0px;
+    position: relative;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 400;
+    color: #000000;
+    display: block;
+    transition: 0.15s;
+}
+
+.leftmenuinnerinner a:hover {
+    color: #bababa;
+    background-color: #686868;
+}
+
+@media screen and (max-height: 450px) {
+    .leftmenu {padding-top: 15px;}
+    .leftmenu a {font-size: 18px;}
+}
+
+.maincontentouter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding-left: 250px;
+    padding-top: 50px;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.maincontentinner {
+    flex: 1;
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+/* Table */
+.table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    font-family: Arial, sans-serif;
+}
+
+.table th, .table td {
+    padding: 6px 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #061848;
+    color: white;
+    font-weight: bold;
+}
+
+.table td {
+    background-color: #f9f9f9; /* Light gray for rows */
+}
+
+/* Alternating row colors */
+.table tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}
+
+.table tr:nth-child(odd) td {
+    background-color: #ffffff;
+}
+
+.table tr:hover td {
+    background-color: #e6f7ff !important; /* Light blue on hover */
+}
+
+.table td {
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Border at the bottom of the table */
+.table {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/*
+    USER FORMS
+*/
+.form-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.user-form {
+    max-width: 500px;
+    flex: 1;
+    margin: 2rem;
+    padding: 2rem;
+    background-color: #f9f9fb;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-family: system-ui, sans-serif;
+}
+
+.user-form h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+  
+.user-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.user-form label {
+    font-weight: 600;
+    color: #333;
+}
+
+.user-form input[type="text"],
+.user-form input[type="email"],
+.user-form input[type="password"],
+.user-form select {
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    background-color: #fff;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.user-form input:focus,
+.user-form select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.user-form button {
+    padding: 0.75rem;
+    background-color: #4a90e2;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.user-form button:hover {
+    background-color: #357abd;
+}
+
+/* JSON OUTPUT */
+.form-output {
+    max-width: 500px;
+    margin: 2rem;
+    padding: 2rem;
+    flex: 1;
+    max-height: 500px;
+    overflow: auto;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: "Courier New", monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.error-header {
+    font-weight: bold;
+    color: #c00;
+    margin-bottom: 0.5rem;
+}
+
+.json-error-output {
+    margin: 0;
+    white-space: pre;
+}
+
+/* GAMES */
+/* Main Container */
+.view-games {
+    display: flex;
+    flex-direction: column; /* Stack vertically on small screens */
+    gap: 30px; /* Space between sections */
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+/* Section Styling (Create Game & Existing Games) */
+.create-game,
+.existing-games {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    flex: 1; /* Allow sections to grow */
+}
+
+.section-title {
+    font-size: 1.8em;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px; /* Rounded input fields */
+    font-size: 1em;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus {
+    border-color: #007bff; /* Highlight on focus */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* Button Styling */
+.create-game-button,
+.select-button,
+.delete-button {
+    display: inline-block;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    text-align: center;
+    margin-top: 10px; /* Space from input */
+}
+
+.create-game-button {
+    background-color: #28a745; /* Green for create */
+    color: white;
+    width: 100%; /* Full width for create button */
+}
+
+.create-game-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.select-button {
+    background-color: #007bff; /* Blue for select/manage */
+    color: white;
+    margin-left: 10px; /* Space between buttons */
+}
+
+.select-button:first-of-type {
+    margin-left: 0; /* No margin for the first button in a group */
+}
+
+.select-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.delete-button {
+    background-color: #ff1100; /* Blue for select/manage */
+    color: white;
+    margin-left: 10px; /* Space between buttons */
+}
+
+.delete-button:first-of-type {
+    margin-left: 0; /* No margin for the first button in a group */
+}
+
+.delete-button:hover {
+    background-color: #b80000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Game List Styling */
+.game-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between game items */
+}
+
+.game-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #e9e9e9;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.game-item h3 {
+    margin: 0;
+    color: #34495e;
+    font-size: 1.2em;
+}
+
+.game-item div {
+    /* Flex container for game name if needed to grow */
+    flex-grow: 1;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .view-games {
+        flex-direction: row; /* Side-by-side on larger screens */
+    }
+
+    .create-game-button {
+        width: auto; /* Allow button to size naturally */
+    }
+}
